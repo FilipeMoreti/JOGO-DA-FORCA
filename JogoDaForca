@@ -16,10 +16,79 @@ palavra_adivinhada = ["_"] * len(palavra_secreta)
 letras_tentadas = []
 chances = 6 
 
+forca = [
+    """
+      _______
+     |/      |
+     |
+     |
+     |
+     |
+    _|___
+    """,
+    """
+      _______
+     |/      |
+     |      O
+     |
+     |
+     |
+    _|___
+    """,
+    """
+      _______
+     |/      |
+     |      O
+     |      |
+     |
+     |
+    _|___
+    """,
+    """
+      _______
+     |/      |
+     |      O
+     |     /|
+     |
+     |
+    _|___
+    """,
+    """
+      _______
+     |/      |
+     |      O
+     |     /|\\
+     |
+     |
+    _|___
+    """,
+    """
+      _______
+     |/      |
+     |      O
+     |     /|\\
+     |     /
+     |
+    _|___
+    """,
+    """
+      _______
+     |/      |
+     |      O
+     |     /|\\
+     |     / \\
+     |
+    _|___
+    """
+]
+
+print("--- JOGO DA FORCA ---")
+
 #Passo 2: O Loop Principal do Jogo
 
 while chances > 0:
     # Exibe o estado atual do jogo
+    print(forca[-1 - chances])
     print("\n"+ " ".join(palavra_adivinhada))
     print(f"Chances restabtes: {chances}")
     print(f"Letras já tentadas: {letras_tentadas}")
@@ -57,5 +126,3 @@ while chances > 0:
 # Se o loop terminar e o jogador ainda tiver espaços para preencher, significa que ele perdeu!
 if "_" in palavra_adivinhada:
               print("\n" + f"Você perdeu! A palavra era {palavra_secreta}")
-              
-
