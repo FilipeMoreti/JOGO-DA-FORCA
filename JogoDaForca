@@ -1,0 +1,61 @@
+#Jogo da Forca
+
+#Passo 1: Configuração Inicial
+
+import random 
+# Lista de palavras para o jogo
+palavras = ["sapo", "perereca", "rã", "cururu", "lagoa"]
+
+# Escolha de paravras aleatórias da lista
+palavra_secreta = random.choice(palavras).upper()
+
+#Cria a palavra "adivinhada"com underlines
+palavra_adivinhada = ["_"] * len(palavra_secreta)
+
+#Variáveis do jogo
+letras_tentadas = []
+chances = 6 
+
+#Passo 2: O Loop Principal do Jogo
+
+while chances > 0:
+    # Exibe o estado atual do jogo
+    print("\n"+ " ".join(palavra_adivinhada))
+    print(f"Chances restabtes: {chances}")
+    print(f"Letras já tentadas: {letras_tentadas}")
+    
+    #Recebe a entrada do jogador
+    letra_digitada = input("Digite ima letra: ").upper()
+    
+    #Valida a entrada da letra
+    if len(letra_digitada) != 1 or not letra_digitada.isalpha():
+        print("Entrada inválida. Digite apenas uma letra.")
+        continue
+        
+    #Adiciona a letra à lista de tentativas
+    letras_tentadas.append(letra_digitada)
+    
+    #Verifica se a letra está na palavra secreta
+    if letra_digitada in palavra_secreta:
+        print(f"Parabéns! A letra '{letra_digitada}'está na palavra.")
+        
+        #Atualiza a palavra adivinhada
+        for i in range(len(palavra_secreta)):
+            if palavra_secreta[i] == letra_digitada:
+                palavra_adivinhada[i] = letra_digitada
+    else:
+        print(f"Que pena! A letra '{letra_digitada}'não está na palavra.")
+        chances -= 1 #Diminui as tentativas
+        
+    #Verifica se o jogador venceu
+    if "_"not in palavra_adivinhada:
+        print("\n" + " ".join(palavra_adivinhada))
+        print("\nParabéns! Você adivinhou a palavra!")
+        break
+            
+#Passo 3: Finalização do Jogo
+# Se o loop terminar e o jogador ainda tiver espaços para preencher, significa que ele perdeu!
+if "_" in palavra_adivinhada:
+              print("\n" + f"Você perdeu! A palavra era {palavra_secreta}")
+              
+
